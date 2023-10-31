@@ -16,8 +16,8 @@ function MovieSeatBooking() {
       const seat = { row, col };
 
       if (
-        (movieType === "standard" && col >= 2 && col <= 12) ||
-        (movieType === "premium" && (col === 0 || col === 1 || col === 13 || col === 14))
+        (movieType === "standard" && col >= 4 && col <= 15) ||
+        (movieType === "premium" && (col === 0 || col === 1 || col === 2 || col === 3))
       ) {
         if (selectedSeatsCopy.length < maxQuantity) {
           const seatIndexInSelectedSeats = selectedSeatsCopy.findIndex(
@@ -124,8 +124,12 @@ function MovieSeatBooking() {
           <span className="sold-count">{soldSeats.length} Seats Sold</span>
         </li>
       </ul>
+      <div class="screen"></div>
 
       <div className="container">
+      <div className="premium-seats-label">Premium Seats</div>
+         <div className="standard-seats-label">Standard Seats</div>
+      
         {Array.from({ length: rows }).map((_, rowIndex) => (
           <div key={rowIndex} className="row">
             {Array.from({ length: columns }).map((_, colIndex) => {
@@ -152,6 +156,7 @@ function MovieSeatBooking() {
             })}
           </div>
         ))}
+       
       </div>
 
       <div className="pricing">
@@ -165,6 +170,7 @@ function MovieSeatBooking() {
         </p>
         <p>{`Selected Movie Type: ${movieType} : ${ticketPrice} RS`}</p>
       </div>
+  
 
       <button className="proceed-button" onClick={handleSellSeats}>Proceed</button>
     </div>
